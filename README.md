@@ -1,8 +1,8 @@
-###  DATE: 
+![iot exp 4 image1](https://github.com/Prasanavausdevan/EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR/assets/144870579/ecf17485-5833-4edd-bec5-3157fe6713f3)###  DATE: 5.03.2024
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT: 
+###  NAME:PRASANA V 
+###  ROLL NO :212223040150
+###  DEPARTMENT:CSE 
 
 
 # EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR
@@ -118,15 +118,54 @@ The diagram below shows how the GPIO pins are connected to the 16 interrupt line
   
 
 ## STM 32 CUBE PROGRAM :
+```
+
+#include "main.h"
+#include "stdio.h"
+
+#if defined (__ICCARM__) || defined (__ARMCC_VERSION)
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#elif defined(__GNUC__)
+
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#endif
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+		if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4)==0)
+		{
+			printf("obstacle found\n");
+			HAL_Delay(500);
+		}
+		else
+		{
+			printf("obstacle not found\n");
+			HAL_Delay(500);
+		}
+}
+
+PUTCHAR_PROTOTYPE
+{
+
+  HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xFFFF);
+
+  return ch;
+}
+
+```
 
 
 
 ## Output screen shots of serial port utility   :
- 
+ ![iot 4 1](https://github.com/Prasanavausdevan/EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR/assets/144870579/9ed0983b-8826-4150-96eb-7207e2b48a61)
+![iot 4 2](https://github.com/Prasanavausdevan/EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR/assets/144870579/2b052a2a-bde4-4e81-989b-a6c2819cae56)
+
  
  ## Circuit board :
- 
- 
+![iot exp 4 image1](https://github.com/Prasanavausdevan/EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR/assets/144870579/5b194f4a-7517-45e3-8df5-5e4074122c16)
+![iot exp 4 image 2](https://github.com/Prasanavausdevan/EXPERIMENT--04-INTERUPT-GENRATION-USING-SENSOR-AND-VISUALIZING-USING-SERIAL-MONITOR/assets/144870579/14f4d964-c832-4660-a9df-90e275446208)
+
+
  
 ## Result :
 Interfacing a  IR SENSOR and interrupt is generated using external interrupt mode , visualized on serial port 
